@@ -17,15 +17,7 @@
 
         private int FindUnique(int[] array)
         {
-
-            foreach(var item in array) // Перебираем все элементы массива
-            {
-                if (_unique.Contains(item)) // Если лист содержит в себе текущее значение массива, то пропускаем итерацию цикла
-                    continue;
-                _unique.Add(item); // Добавляем в лист уникальное значение 
-            }
-
-            return _unique.Count; // Возвращаем количество элементов листа
+            return array.Distinct().Count(); // Возвращаем количество элементов 
         }
     }
 }
