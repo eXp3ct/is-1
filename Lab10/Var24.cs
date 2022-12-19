@@ -33,10 +33,10 @@ namespace Lab10
                 }
                 tempMax = same.Count - same.Distinct().Count(); // Считаем количество повторяющихся элементов (Общее количество элементов - количество различающихся)
                 noRecurring = ValidateInt(tempMax);
-                if(noRecurring == string.Empty) // DEBUG проверка строк 
+                /*if(noRecurring == string.Empty) // DEBUG проверка строк 
                     Console.WriteLine($"<---[Строка {i + 1} || {tempMax}]--->");
                 else
-                    Console.WriteLine($"<---[Строка {i + 1} || {noRecurring}]--->");
+                    Console.WriteLine($"<---[Строка {i + 1} || {noRecurring}]--->");*/
                 if (tempMax > max) // Если временный максимум больше максимума, то временный максимум становится максимумом
                 {
                     max = tempMax;
