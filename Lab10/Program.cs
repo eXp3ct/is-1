@@ -6,8 +6,8 @@
         private static int _m = 0;
         public static void Main(string[] args)
         {
-            //ExecuteVariant24();
-            ExecuteVariant43();
+            ExecuteVariant24();
+            //ExecuteVariant43();
         }
 
         private static void ExecuteVariant43()

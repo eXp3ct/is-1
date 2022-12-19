@@ -15,14 +15,15 @@ namespace Lab10
             Program.FillArray(_array, true); // Заполняем массив
 
             Program.PrintArray(_array); // Выводим его
-            Console.WriteLine($"Результат: {GetLastRow(_array)}"); // Выводим результат
+            Console.WriteLine($"Результат: {GetLastRow(_array)}"); // Выводим результат 
         }
-        private int GetLastRow(int[,] array)
+        private int? GetLastRow(int[,] array)
         {
             int result = 0; // Переменная результата
-            int tempMax; // Переменная временного максимального количества повторяющихся элементов
+            int tempMax = 0; // Переменная временного максимального количества повторяющихся элементов
             int max = 0; // Переменная для максимального количества повторяющихся элементов
-            for (int i = 0; i < _n; i++) // Перебираем строки
+            string noRecurring = string.Empty;
+            for (int i = 0; i < array.GetLength(0); i++) // Перебираем строки
             {
                 List<int> same = new(); // Лист элементов строки
                 
@@ -31,8 +32,12 @@ namespace Lab10
                     same.Add(array[i,j]); // Добавляем в лист
                 }
                 tempMax = same.Count - same.Distinct().Count(); // Считаем количество повторяющихся элементов (Общее количество элементов - количество различающихся)
-                //Console.WriteLine($"<---[Строка {i+1} || {tempMax}]--->"); // DEBUG проверка строк 
-                if(tempMax > max) // Если временный максимум больше максимума, то временный максимум становится максимумом
+                noRecurring = ValidateInt(tempMax);
+                if(noRecurring == string.Empty) // DEBUG проверка строк 
+                    Console.WriteLine($"<---[Строка {i + 1} || {tempMax}]--->");
+                else
+                    Console.WriteLine($"<---[Строка {i + 1} || {noRecurring}]--->");
+                if (tempMax > max) // Если временный максимум больше максимума, то временный максимум становится максимумом
                 {
                     max = tempMax;
                     result = i+1; // В результат сохраняем номер строки
@@ -40,8 +45,16 @@ namespace Lab10
                 else if(tempMax == max) // Если временный максимум равен максимуму, то просто в результат сохраняем эту строку (для получения последней строки)
                     result = i +1;
             }
-            
+            if(max == 0)
+            {
+                Console.WriteLine("Нет повторяющихся чисел");
+                return null;
+            }
             return result; // Возвращаем результат
+        }
+        private string ValidateInt(int value)
+        {
+            return value == 0 ? "нет повторяющихся чисел" : string.Empty;
         }
     }
 }
